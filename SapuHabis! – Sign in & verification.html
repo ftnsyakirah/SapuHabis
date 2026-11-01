@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>SapuHabis! – Sign in &amp; verification</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="shell">
+    <aside class="side">
+      <div class="logo">SapuHabis!</div>
+      <h2>Turn surplus food into impact.</h2>
+      <p>One platform for businesses to sell or donate, and for food banks to request what their communities need.</p>
+      <ol class="how">
+        <li><i>1</i>
+          <div><b>Register and upload documents</b><span>Company details, SSM and supporting files.</span></div>
+        </li>
+        <li><i>2</i>
+          <div><b>We verify your account</b><span>Our team reviews within 2–3 working days.</span></div>
+        </li>
+        <li><i>3</i>
+          <div><b>Get started</b><span>We email you as soon as you’re approved.</span></div>
+        </li>
+      </ol>
+      <div class="foot">Need help? support@sapuhabis.my</div>
+    </aside>
+
+    <main class="main">
+      <div class="panel">
+
+        <section id="v-signin" class="card">
+          <h1>Sign in</h1>
+          <p class="sub">Welcome back. Enter your details to continue.</p>
+          <div id="si-alert" class="alert" role="alert"></div>
+          <div class="f" id="g-si-email"><label for="si-email">Work email</label><input id="si-email" type="email"
+              autocomplete="email" placeholder="name@company.com">
+            <div class="err">Enter a valid email address.</div>
+          </div>
+          <div class="f" id="g-si-pw"><label for="si-pw">Password</label>
+            <div class="pw"><input id="si-pw" type="password" autocomplete="current-password"><button class="eye"
+                type="button" data-eye="si-pw" aria-label="Show password"></button></div>
+            <div class="err">Enter your password.</div>
+          </div>
+          <div class="between" style="margin-bottom:22px"><label class="chkl"><input type="checkbox">Keep me signed
+              in</label><button class="link" type="button" id="forgot">Forgot password?</button></div>
+          <button class="btn g full" id="si-btn" type="button">Sign in</button>
+          <p class="alt">New to SapuHabis? <button class="link" type="button" data-go="register">Create an
+              account</button></p>
+        </section>
+
+        <section id="v-register" class="card hide">
+          <h1>Create your account</h1>
+          <p class="sub">Every organisation is verified before going live.</p>
+          <div class="stepper" id="stepper"></div>
+
+          <div data-p="1">
+            <div class="lb" style="margin-bottom:10px">I’m registering as</div>
+            <div class="roles" role="radiogroup" aria-label="Account type">
+              <button type="button" class="role" role="radio" aria-checked="false" data-role="business">
+                <div class="ico" data-ic="shop"></div>
+                <div><b>FoodBusiness</b><span>Supermarket, bakery or café with surplus food to sell or
+                    donate.</span></div>
+                <div class="rd" data-ic="check"></div>
+              </button>
+              <button type="button" class="role" role="radio" aria-checked="false" data-role="foodbank">
+                <div class="ico" data-ic="heart"></div>
+                <div><b>Food Charity Organization</b><span>Registered organisation that purchases, collects and distributes food to
+                    charity place in need.</span></div>
+                <div class="rd" data-ic="check"></div>
+              </button>
+            </div>
+            <div id="role-err" class="alert" role="alert" style="margin:12px 0 0">Choose an account type to continue.
+            </div>
+          </div>
+
+          <div data-p="2" class="hide">
+            <div class="sec">Organisation</div>
+            <div class="f" id="g-name"><label for="r-name" id="l-name">Company name</label><input id="r-name"
+                autocomplete="organization">
+              <div class="err">Enter the registered name.</div>
+            </div>
+            <div class="row">
+              <div class="f" id="g-ssm"><label for="r-ssm" id="l-ssm">SSM registration no.</label><input id="r-ssm"
+                  inputmode="text" placeholder="202301012345">
+                <div class="err">Use 12 digits, or the older format 123456-A.</div>
+                <div class="hint" id="h-ssm">On your SSM certificate.</div>
+              </div>
+              <div class="f" id="g-type"><label for="r-type" id="l-type">Business type</label><select
+                  id="r-type"></select>
+                <div class="err">Select one.</div>
+              </div>
+            </div>
+            <div class="f" id="g-addr"><label for="r-addr">Business address</label><input id="r-addr"
+                autocomplete="street-address">
+              <div class="err">Enter your address.</div>
+            </div>
+            <div class="sec" style="margin-top:26px">Contact and login</div>
+            <div class="row">
+              <div class="f" id="g-person"><label for="r-person">Contact person</label><input id="r-person"
+                  autocomplete="name">
+                <div class="err">Enter a name.</div>
+              </div>
+              <div class="f" id="g-phone"><label for="r-phone">Phone number</label><input id="r-phone" type="tel"
+                  autocomplete="tel" placeholder="012-345 6789">
+                <div class="err">Enter a valid phone number.</div>
+              </div>
+            </div>
+            <div class="f" id="g-email"><label for="r-email">Work email</label><input id="r-email" type="email"
+                autocomplete="email">
+              <div class="err">Enter a valid email address.</div>
+              <div class="hint">We’ll send your verification result here.</div>
+            </div>
+            <div class="f" id="g-pw"><label for="r-pw">Password</label>
+              <div class="pw"><input id="r-pw" type="password" autocomplete="new-password"><button class="eye"
+                  type="button" data-eye="r-pw" aria-label="Show password"></button></div>
+              <div class="meter" id="meter"><i></i><i></i><i></i><i></i></div>
+              <div class="err">Use at least 8 characters.</div>
+              <div class="hint" id="pw-h">At least 8 characters. Mix letters, numbers and symbols.</div>
+            </div>
+          </div>
+
+          <div data-p="3" class="hide">
+            <div class="prog" id="prog"></div>
+            <div id="docs"></div>
+            <div id="doc-err" class="alert" role="alert"></div>
+            <label class="chkl" style="margin-top:18px"><input type="checkbox" id="r-agree"><span>I confirm these
+                details and documents are accurate, and I’m authorised to register this organisation.</span></label>
+          </div>
+
+          <div class="nav"><button class="btn o" id="r-back" type="button">Back</button><button class="btn g"
+              id="r-next" type="button">Continue</button></div>
+          <p class="alt" id="r-alt">Already have an account? <button class="link" type="button" data-go="signin">Sign
+              in</button></p>
+        </section>
+
+        <section id="v-status" class="card hide" aria-live="polite">
+          <span class="badge" id="st-badge"></span>
+          <h1 id="st-title" style="margin-top:16px"></h1>
+          <p class="sub" id="st-sub" style="margin-bottom:0"></p>
+          <div class="track stepper" id="track"></div>
+          <div id="st-extra"></div>
+          <div class="sum">
+            <div class="box">
+              <h3>Application <span id="st-ref"></span></h3>
+              <dl id="st-dl"></dl>
+            </div>
+            <div class="box">
+              <h3>Documents submitted</h3>
+              <ul id="st-docs"></ul>
+            </div>
+          </div>
+          <div id="st-actions" style="display:flex;gap:10px;flex-wrap:wrap"></div>
+            <button type="button" id="so" style="margin-left:auto">Sign out</button>  
+        </section>
+
+      </div>
+    </main>
+  </div>
+  <div id="toast" role="status"></div>
+
+  <script>
+    // In-memory demo state. Replace with API calls to your Python backend (PostgreSQL):
+    // POST /api/auth/register (multipart), POST /api/auth/login, GET /api/verification/status
+    const users = []; let me = null, role = null, step = 1, resub = false; const files = {};
+    const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+    const P = d => `<svg viewBox="0 0 24 24" aria-hidden="true">${d}</svg>`;
+    const ic = { eye: P('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'), eyeoff: P('<path d="M3 3l18 18M10.6 5.1A10 10 0 0112 5c6.5 0 10 7 10 7a17 17 0 01-3.2 4M6.6 6.6C3.7 8.4 2 12 2 12s3.5 7 10 7a9.7 9.7 0 004.4-1M9.9 9.9a3 3 0 004.2 4.2"/>'), check: P('<path d="M5 12.5l4.5 4.5L19 7"/>'), file: P('<path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5"/>'), x: P('<path d="M6 6l12 12M18 6L6 18"/>'), shop: P('<path d="M4 9l1.5-5h13L20 9M4 9v11h16V9M4 9a2.7 2.7 0 005.3 0 2.7 2.7 0 005.4 0A2.7 2.7 0 0020 9M10 20v-5h4v5"/>'), heart: P('<path d="M12 20s-8-4.7-8-10.5A4.5 4.5 0 0112 7a4.5 4.5 0 018 2.5C20 15.300 12 20 12 20z"/>'), mail: P('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>'), clock: P('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'), alert: P('<path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/>') };
+    const CFG = {
+      business: {
+        name: 'Company name', ssm: 'SSM registration no.', hint: 'On your SSM certificate (Form 9 or 13).', type: 'Business type', types: ['Supermarket or grocery', 'Bakery', 'Restaurant or café', 'Food manufacturer', 'Distributor or wholesaler', 'Other'],
+        docs: [['ssm', 'SSM certificate (Form 9 or 13)', 1], ['lic', 'Business or premises licence', 1], ['id', 'Director’s or owner’s ID (NRIC or passport)', 1], ['halal', 'Halal or food safety certificate', 0]]
+      },
+      foodbank: {
+        name: 'Organisation name', ssm: 'SSM or ROS registration no.', hint: 'Your SSM or Registrar of Societies number.', type: 'Organisation type', types: ['Registered charity or NGO', 'Food bank', 'Mosque or religious body', 'Community kitchen', 'Other'],
+        docs: [['reg', 'SSM or ROS registration certificate', 1], ['pro', 'Organisation profile or constitution', 1], ['id', 'Committee member’s ID (NRIC or passport)', 1], ['adr', 'Proof of address (utility bill or tenancy)', 1], ['tax', 'Tax exemption letter (LHDN)', 0]]
+      }
+    };
+    const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const size = n => n > 1048576 ? (n / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB';
+    const emailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    const ssmOk = v => /^\d{12}$/.test(v.replace(/\s/g, '')) || /^\d{5,7}-?[A-Za-z]$/.test(v.trim());
+    const bad = (id, on) => $('#g-' + id).classList.toggle('bad', on);
+    function toast(t) { const e = $('#toast'); e.textContent = t; e.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => e.classList.remove('show'), 2600) }
+    function show(v) { ['signin', 'register', 'status'].forEach(x => $('#v-' + x).classList.toggle('hide', x !== v)); window.scrollTo(0, 0) }
+    $$('[data-ic]').forEach(e => e.innerHTML = ic[e.dataset.ic]);
+    $$('[data-eye]').forEach(b => { b.innerHTML = ic.eye; b.onclick = () => { const i = $('#' + b.dataset.eye), h = i.type === 'password'; i.type = h ? 'text' : 'password'; b.innerHTML = h ? ic.eyeoff : ic.eye; b.setAttribute('aria-label', h ? 'Hide password' : 'Show password') } });
+    $$('[data-go]').forEach(b => b.onclick = () => { if (b.dataset.go === 'register') resetReg(); show(b.dataset.go) });
+    $('#forgot').onclick = () => toast('Demo: a reset link would be emailed to you.');
+    ['#si-email', '#si-pw'].forEach(s => $(s).addEventListener('keydown', e => { if (e.key === 'Enter') $('#si-btn').click() }));
+
+    $('#si-btn').onclick = () => {
+      const e = $('#si-email').value.trim(), p = $('#si-pw').value;
+      bad('si-email', !emailOk(e)); bad('si-pw', !p); if (!emailOk(e) || !p) return;
+      const u = users.find(x => x.email.toLowerCase() === e.toLowerCase() && x.pw === p), a = $('#si-alert');
+      if (!u) { a.textContent = 'We couldn’t find an account with those details. Check your email and password, or create an account.'; a.classList.add('show'); return }
+      a.classList.remove('show'); me = u; renderStatus(); show('status')
+    };
+    $('#so').onclick = () => { me = null; $('#si-pw').value = ''; show('signin') };
+
+    // stepper
+    function stepper(el, labels, cur, doneAll) { el.innerHTML = labels.map((l, i) => `<div class="st ${doneAll || i < cur ? 'done' : i === cur ? 'on' : ''}"><div class="c">${doneAll || i < cur ? ic.check : i + 1}</div>${l}</div>`).join('') }
+    function goStep(n) {
+      step = n; $$('[data-p]').forEach(p => p.classList.toggle('hide', +p.dataset.p !== n)); stepper($('#stepper'), ['Account type', 'Organisation', 'Documents'], n - 1);
+      $('#r-back').style.visibility = (n === 1 || (resub && n === 3)) ? 'hidden' : 'visible'; $('#r-next').textContent = n === 3 ? (resub ? 'Resubmit for review' : 'Submit for verification') : 'Continue'; $('#r-alt').classList.toggle('hide', resub); window.scrollTo(0, 0); if (n === 3) renderDocs()
+    }
+    function resetReg() { role = null; resub = false; for (const k in files) delete files[k]; $$('.role').forEach(r => r.setAttribute('aria-checked', 'false')); $$('#v-register input:not([type=checkbox]),#v-register select').forEach(i => i.value = ''); $('#r-agree').checked = false; $$('.bad').forEach(b => b.classList.remove('bad')); meter(''); goStep(1) }
+    $$('.role').forEach(r => r.onclick = () => { role = r.dataset.role; $$('.role').forEach(x => x.setAttribute('aria-checked', x === r)); $('#role-err').classList.remove('show'); setRole() });
+    function setRole() { const c = CFG[role]; $('#l-name').textContent = c.name; $('#l-ssm').textContent = c.ssm; $('#h-ssm').textContent = c.hint; $('#l-type').textContent = c.type; $('#r-type').innerHTML = '<option value="">Select…</option>' + c.types.map(t => `<option>${t}</option>`).join('') }
+
+    // validation on blur
+    const V = { name: v => !!v, ssm: ssmOk, type: v => !!v, person: v => !!v, phone: v => v.replace(/\D/g, '').length >= 9, addr: v => !!v, email: v => emailOk(v), pw: v => v.length >= 8 };
+    for (const k in V) { const i = $('#r-' + k); i.addEventListener('blur', () => { if (i.value || $('#g-' + k).classList.contains('bad')) bad(k, !V[k](i.value.trim())) }); i.addEventListener('input', () => { if ($('#g-' + k).classList.contains('bad')) bad(k, !V[k](i.value.trim())) }) }
+    function meter(v) {
+      let s = 0; if (v.length >= 8) s++; if (/[A-Z]/.test(v) && /[a-z]/.test(v)) s++; if (/\d/.test(v)) s++; if (/[^A-Za-z0-9]/.test(v)) s++; if (v.length < 8) s = Math.min(s, 1); if (!v) s = 0;
+      $$('#meter i').forEach((b, i) => b.style.background = i < s ? ['', '#d9534f', '#e0a030', '#7bb83d', '#1f8f5f'][s] : ''); $('#pw-h').textContent = v ? ['', 'Weak', 'Fair', 'Good', 'Strong'][s] + (v.length < 8 ? '. Use at least 8 characters.' : '') : 'At least 8 characters. Mix letters, numbers and symbols.'
+    }
+    $('#r-pw').addEventListener('input', e => meter(e.target.value));
+
+    // documents
+    function renderDocs() {
+      const d = CFG[role].docs, req = d.filter(x => x[2]), got = req.filter(x => files[x[0]]).length;
+      $('#prog').textContent = got + ' of ' + req.length + ' required documents uploaded';
+      $('#docs').innerHTML = d.map(([k, l, r]) => { const f = files[k]; return `<div class="doc ${f ? 'has' : ''}" data-k="${k}"><div class="di">${f ? ic.check : ic.file}</div><div class="dt"><b>${l}</b><small>${f ? esc(f.name) + ' · ' + size(f.size) : (r ? 'Required' : 'Optional') + ' · PDF, JPG or PNG, max 5 MB. Drag a file here or'}</small></div>${f ? `<button class="x" type="button" data-rm="${k}" aria-label="Remove ${esc(l)}">${ic.x}</button>` : `<button class="btn o sm" type="button" data-up="${k}">Choose file</button>`}<input type="file" hidden accept=".pdf,.jpg,.jpeg,.png" data-in="${k}"></div>` }).join('')
+    }
+    function take(k, f) {
+      const e = $('#doc-err'); if (!f) return;
+      if (!/\.(pdf|jpe?g|png)$/i.test(f.name)) { e.textContent = 'Only PDF, JPG or PNG files are accepted.'; e.classList.add('show'); return }
+      if (f.size > 5242880) { e.textContent = f.name + ' is over 5 MB. Choose a smaller file.'; e.classList.add('show'); return }
+      e.classList.remove('show'); files[k] = f; renderDocs()
+    }
+    const D = $('#docs');
+    D.onclick = e => { const u = e.target.closest('[data-up]'), r = e.target.closest('[data-rm]'); if (u) D.querySelector(`[data-in="${u.dataset.up}"]`).click(); if (r) { delete files[r.dataset.rm]; renderDocs() } };
+    D.onchange = e => { if (e.target.dataset.in) take(e.target.dataset.in, e.target.files[0]) };
+    D.ondragover = e => { const d = e.target.closest('.doc'); if (d) { e.preventDefault(); d.classList.add('over') } };
+    D.ondragleave = e => { const d = e.target.closest('.doc'); if (d) d.classList.remove('over') };
+    D.ondrop = e => { const d = e.target.closest('.doc'); if (d) { e.preventDefault(); take(d.dataset.k, e.dataTransfer.files[0]) } };
+
+    $('#r-back').onclick = () => goStep(step - 1);
+    $('#r-next').onclick = () => {
+      if (step === 1) { if (!role) { $('#role-err').classList.add('show'); return } return goStep(2) }
+      if (step === 2) {
+        let any = false; const v = k => $('#r-' + k).value.trim();
+        for (const k in V) { const b = !V[k](v(k)); bad(k, b); any = any || b }
+        if (!any && users.some(u => u.email.toLowerCase() === v('email').toLowerCase())) { bad('email', true); $('#g-email .err').textContent = 'This email is already registered. Sign in instead.'; any = true }
+        if (any) { const f = $('.bad input,.bad select'); f && f.focus(); return } return goStep(3)
+      }
+      const miss = CFG[role].docs.filter(d => d[2] && !files[d[0]]), e = $('#doc-err');
+      if (miss.length) { e.textContent = 'Still needed: ' + miss.map(m => m[1]).join('; ') + '.'; e.classList.add('show'); return }
+      if (!$('#r-agree').checked) { e.textContent = 'Tick the confirmation box to continue.'; e.classList.add('show'); return }
+      e.classList.remove('show');
+      const docs = CFG[role].docs.filter(d => files[d[0]]).map(d => [d[1], files[d[0]].name]);
+      if (resub) { me.docs = docs; me.status = 'pending'; resub = false; toast('Documents resubmitted.'); renderStatus(); return show('status') }
+      const v = k => $('#r-' + k).value.trim();
+      me = { role, name: v('name'), ssm: v('ssm'), type: v('type'), person: v('person'), phone: v('phone'), addr: v('addr'), email: v('email'), pw: $('#r-pw').value, docs, status: 'pending', ref: 'SH-' + new Date().getFullYear() + '-' + (Math.floor(Math.random() * 90000) + 10000) };
+      users.push(me); // TODO: send multipart form to the Python API
+      renderStatus(); show('status')
+    };
+
+    function renderStatus() {
+      const s = me.status, fb = me.role === 'foodbank';
+      const M = {
+        pending: ['b-p', ic.clock, 'Under review', 'We’re reviewing your application', 'Our team is checking your ' + (fb ? 'organisation' : 'business') + ' details and documents. This usually takes 2–3 working days.', 1],
+        approved: ['b-a', ic.check, 'Verified', 'You’re verified. Welcome to SapuHabis!', fb ? 'You can now browse available donations and submit requests.' : 'You can now add inventory, sell surplus food and donate to food banks.', 4],
+        changes: ['b-r', ic.alert, 'Action needed', 'We need a few more details', 'We couldn’t finish verification yet. Update the item below and resubmit.', 1]
+      }[s];
+      $('#st-badge').className = 'badge ' + M[0]; $('#st-badge').innerHTML = M[1] + M[2]; $('#st-title').textContent = M[3]; $('#st-sub').textContent = M[4];
+      stepper($('#track'), ['Submitted', 'Under review', 'Decision emailed', 'Account active'], M[5], false);
+      if (s === 'approved') stepper($('#track'), ['Submitted', 'Under review', 'Decision emailed', 'Account active'], 4, true);
+      $('#st-extra').innerHTML = s === 'pending' ? `<div class="next">${ic.mail}<div><b>You don’t need to wait here.</b><br>We’ll email ${esc(me.email)} as soon as we’ve made a decision.</div></div>`
+        : s === 'changes' ? `<div class="note">Reviewer note: the ${esc(CFG[me.role].docs[0][1])} is unclear and the registration number doesn’t match. Upload a clearer copy.</div>` : '';
+      $('#st-ref').textContent = me.ref;
+      $('#st-dl').innerHTML = [[fb ? 'Organisation' : 'Company', me.name], ['Registration no.', me.ssm], ['Type', me.type], ['Contact', me.person + ' · ' + me.phone], ['Email', me.email]].map(r => `<div><dt>${r[0]}</dt><dd>${esc(r[1])}</dd></div>`).join('');
+      $('#st-docs').innerHTML = me.docs.map(d => `<li>${ic.check}<span>${esc(d[0])}</span></li>`).join('');
+      $('#st-actions').innerHTML = s === 'approved' ? '<button class="btn g" id="a1" type="button">Go to dashboard</button>' : s === 'changes' ? '<button class="btn g" id="a2" type="button">Update documents</button>' : '<button class="btn o" id="a3" type="button">Contact support</button>';
+      if ($('#a1')) $('#a1').onclick = () => toast('Demo: opens the ' + (fb ? 'Food Bank Request Center.' : 'Business Inventory Dashboard.'));
+      if ($('#a3')) $('#a3').onclick = () => toast('Email us at support@sapuhabis.my');
+      if ($('#a2')) $('#a2').onclick = () => { role = me.role; resub = true; setRole(); $('#r-agree').checked = false; show('register'); goStep(3) };
+       
+    }
+    resetReg();
+  </script>
+</body>
+
+</html>

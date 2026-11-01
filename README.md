@@ -1,12 +1,10 @@
-# SapuHabis
-
-# TEAM MEMBERS
+# SapuHabis TEAM MEMBERS
  - ASYIK ILLAHI
  - NORHASLIN SHARI
  - FATIN SYAKIRAH
  - BATRISYIA AMANI
 
-#Contact Section
+# SapuHabis CONTACT SESSION
 - Contact Email 1: 
 - Contact Email 2: norhaslin05@graduate.utm.my
 - Contact Email 3:

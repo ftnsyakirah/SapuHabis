@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
 
+import 'auth/welcome_screen.dart';
+import 'theme/app_colors.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const SapuHabisApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SapuHabisApp extends StatelessWidget {
+  const SapuHabisApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'SapuHabis!',
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('SapuHabis'),
-          backgroundColor: Colors.green,
-        ),
-        body: const Center(
-          child: Text(
-            'Hello SapuHabis Team! 🚀',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+      theme: ThemeData(
+        useMaterial3: true,
+        scaffoldBackgroundColor: AppColors.cream,
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.green),
       ),
+      home: const WelcomeScreen(),
     );
   }
 }

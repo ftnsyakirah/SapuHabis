@@ -27,27 +27,18 @@ class _OrganisationHomeScreenState extends State<OrganisationHomeScreen> {
       status: _ListingStatus.active,
     ),
     _Listing(
-      title: 'Fresh Salad Pack',
-      subtitle: '4 left · Pickup 6:30 PM - 7:30 PM',
-      price: 'RM 4.50',
-      discount: '60% off',
+      title: 'Mixed Vegetables Box',
+      subtitle: 'Tesco Skudai',
+      price: 'RM 0.00',
       status: _ListingStatus.active,
     ),
     _Listing(
-      title: 'Pastry Surprise Bag',
-      subtitle: 'Sold out',
-      price: 'RM 6.00',
-      discount: '65% off',
+      title: 'Yogurt Pack',
+      subtitle: 'Jaya Grocer',
+      price: 'RM 0.00',
       status: _ListingStatus.soldOut,
     ),
   ];
-
-  void _addListing() {
-    // TODO: navigate to the "Add listing" screen.
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Add listing coming soon')),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,8 +75,6 @@ class _OrganisationHomeScreenState extends State<OrganisationHomeScreen> {
       bottomNavigationBar: _buildBottomNav(),
     );
   }
-
-  // ---------- Sections ----------
 
   Widget _buildHeader() {
     return Row(
@@ -363,8 +352,6 @@ class _OrganisationHomeScreenState extends State<OrganisationHomeScreen> {
   }
 }
 
-// ---------- Small widgets ----------
-
 class _CircleIconButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onTap;
@@ -526,7 +513,6 @@ class _ListingCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Placeholder thumbnail: swap for Image.network / Image.asset.
           Container(
             width: 56,
             height: 56,

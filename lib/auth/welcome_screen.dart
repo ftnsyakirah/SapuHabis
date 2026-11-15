@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
 import '../widgets/app_buttons.dart';
+import '../widgets/auth_page.dart';
 import '../widgets/sapu_logo.dart';
 import 'login_screen.dart';
 import 'register_screen.dart';
@@ -11,90 +12,80 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.cream,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(24, 16, 24, 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return AuthPage(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.eco_outlined,
-                        size: 14,
-                        color: AppColors.green,
-                      ),
-                      SizedBox(width: 4),
-                      Text(
-                        'Less waste.',
-                        style: TextStyle(fontSize: 11, color: AppColors.green),
-                      ),
-                    ],
+                  Icon(Icons.eco_outlined, size: 14, color: AppColors.green),
+                  SizedBox(width: 4),
+                  Text(
+                    'Less waste.',
+                    style: TextStyle(fontSize: 11, color: AppColors.green),
                   ),
-                  SapuLogo(height: 34),
                 ],
               ),
-              const SizedBox(height: 18),
-              const _HeroImage(),
-              const SizedBox(height: 24),
-              const Text(
-                'Good food.',
-                style: TextStyle(
-                  fontSize: 34,
-                  height: 1.1,
-                  fontWeight: FontWeight.w800,
-                  color: AppColors.dark,
-                ),
-              ),
-              const Text(
-                'Better prices.',
-                style: TextStyle(
-                  fontSize: 34,
-                  height: 1.1,
-                  fontWeight: FontWeight.w800,
-                  color: AppColors.green,
-                ),
-              ),
-              const SizedBox(height: 12),
-              const Text(
-                'Rescue delicious surplus food from nearby spots.\nSave money with every bite.',
-                style: TextStyle(
-                  fontSize: 14,
-                  height: 1.4,
-                  color: AppColors.textGrey,
-                ),
-              ),
-              const SizedBox(height: 22),
-              PrimaryButton(
-                label: 'Get started',
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const RegisterScreen()),
-                ),
-              ),
-              const SizedBox(height: 10),
-              OutlineWideButton(
-                label: 'I already have an account',
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const LoginScreen()),
-                ),
-              ),
-              const SizedBox(height: 14),
-              const Center(
-                child: Text(
-                  'A little saving. A big difference.',
-                  style: TextStyle(fontSize: 11, color: AppColors.textGrey),
-                ),
-              ),
+              SapuLogo(height: 34),
             ],
           ),
-        ),
+          const SizedBox(height: 18),
+          const _HeroImage(),
+          const SizedBox(height: 24),
+          const Text(
+            'Good food.',
+            style: TextStyle(
+              fontSize: 34,
+              height: 1.1,
+              fontWeight: FontWeight.w800,
+              color: AppColors.dark,
+            ),
+          ),
+          const Text(
+            'Better prices.',
+            style: TextStyle(
+              fontSize: 34,
+              height: 1.1,
+              fontWeight: FontWeight.w800,
+              color: AppColors.green,
+            ),
+          ),
+          const SizedBox(height: 12),
+          const Text(
+            'Rescue delicious surplus food from nearby spots.\nSave money with every bite.',
+            style: TextStyle(
+              fontSize: 14,
+              height: 1.4,
+              color: AppColors.textGrey,
+            ),
+          ),
+          const SizedBox(height: 22),
+          PrimaryButton(
+            label: 'Get started',
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const RegisterScreen()),
+            ),
+          ),
+          const SizedBox(height: 10),
+          OutlineWideButton(
+            label: 'I already have an account',
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const LoginScreen()),
+            ),
+          ),
+          const SizedBox(height: 14),
+          const Center(
+            child: Text(
+              'A little saving. A big difference.',
+              style: TextStyle(fontSize: 11, color: AppColors.textGrey),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -107,9 +98,9 @@ class _HeroImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(28),
-      child: SizedBox(
-        height: 270,
-        width: double.infinity,
+      // AspectRatio keeps the same proportions on every screen width.
+      child: AspectRatio(
+        aspectRatio: 1.25,
         child: Stack(
           fit: StackFit.expand,
           children: [

@@ -29,15 +29,21 @@ class _OrganisationHomeScreenState extends State<OrganisationHomeScreen> {
       title: 'Mixed Vegetables Box',
       subtitle: 'Tesco Skudai',
       price: 'RM 0.00',
+      discount: 'None',
       status: _ListingStatus.active,
     ),
     _Listing(
       title: 'Yogurt Pack',
       subtitle: 'Jaya Grocer',
       price: 'RM 0.00',
+      discount: 'None',
       status: _ListingStatus.soldOut,
     ),
   ];
+
+  void _addListing() {
+    debugPrint('Add listing tapped');
+  }
 
   @override
   Widget build(BuildContext context) {

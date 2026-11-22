@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'screen_myrequest.dart';
 // Put this file in e.g. lib/screens/foodcharity_dashboard.dart
 // Use it from your existing app:
 //   Navigator.push(context, MaterialPageRoute(builder: (_) => const FoodCharityDashboard()));
@@ -172,7 +172,18 @@ class FoodCharityDashboard extends StatelessWidget {
 
             // Quick actions
             Row(children: [
-              Expanded(child: _action(Icons.add, 'Add Request', primary: true)),
+              Expanded(
+                child: _action(
+                  Icons.add,
+                  'Add Request',
+                    primary: true,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const MyRequestsScreen()),
+                    ),
+                ),
+              ),
+              
               const SizedBox(width: 8),
               Expanded(child: _action(Icons.storefront_outlined, 'View Supermarket')),
               const SizedBox(width: 8),
@@ -268,7 +279,11 @@ class FoodCharityDashboard extends StatelessWidget {
     );
   }
 
-  Widget _action(IconData icon, String label, {bool primary = false}) => Container(
+  Widget _action(IconData icon, String label,
+        {bool primary = false, VoidCallback? onTap}) =>
+    GestureDetector(
+      onTap: onTap,
+      child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
         decoration: BoxDecoration(
           color: primary ? _fcGreen : _fcCard,
@@ -285,5 +300,6 @@ class FoodCharityDashboard extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: primary ? Colors.white : _fcGreenDark)),
         ]),
-      );
+      ),
+    );
 }

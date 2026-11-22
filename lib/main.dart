@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'auth/welcome_screen.dart';
+import 'FoodCharity/screen_dashboard.dart';
 import 'theme/app_colors.dart';
+
+/// Set to true to open the dashboard directly while you are designing it.
+/// Set back to false so the app starts at the welcome screen again.
+const bool kPreviewFoodCharityDashboard = true;
 
 void main() {
   runApp(const SapuHabisApp());
@@ -9,6 +14,8 @@ void main() {
 
 class SapuHabisApp extends StatelessWidget {
   const SapuHabisApp({super.key});
+
+  static const String foodCharityDashboardRoute = '/foodcharity-dashboard';
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +40,12 @@ class SapuHabisApp extends StatelessWidget {
           child: child!,
         );
       },
-      home: const WelcomeScreen(),
+      home: kPreviewFoodCharityDashboard
+          ? const FoodCharityDashboard()
+          : const WelcomeScreen(),
+      routes: {
+        foodCharityDashboardRoute: (_) => const FoodCharityDashboard(),
+      },
     );
   }
 }

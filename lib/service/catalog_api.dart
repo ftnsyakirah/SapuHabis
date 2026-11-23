@@ -13,7 +13,6 @@ enum CatalogSort {
   final String apiValue;
   final String label;
   const CatalogSort(this.apiValue, this.label);
-
   bool get needsLocation => this == CatalogSort.nearest;
 }
 
@@ -25,7 +24,7 @@ class CatalogFilters {
   double? maxPrice;
   int? minDiscount;
   int? expiringWithinHours;
-  double? maxDistanceKm; 
+  double? maxDistanceKm;
   bool includeSoldOut;
 
   CatalogFilters({
@@ -119,17 +118,17 @@ class CatalogItem {
   final String description;
   final String category;
   final String listingType; 
-  final double price;
+  final double price; 
   final double originalPrice; 
   final int discountPercent;
   final int quantityLeft;
-  final DateTime expiryAt; 
-  final int expiresInMinutes;
+  final DateTime expiryAt;
+  final int expiresInMinutes; 
   final DateTime? pickupStart;
   final DateTime? pickupEnd;
   final List<String> tags;
   final String? imageUrl;
-  final double? distanceKm; 
+  final double? distanceKm;
   final CatalogBusiness business;
 
   const CatalogItem({
@@ -222,6 +221,44 @@ class CatalogPage {
       );
 }
 
+class CatalogFacet {
+  final String name;
+  final int count;
+
+  const CatalogFacet({required this.name, required this.count});
+
+  factory CatalogFacet.fromJson(Map<String, dynamic> j) =>
+      CatalogFacet(name: j['name'] as String, count: j['count'] as int);
+}
+
+class CatalogFacets {
+  final List<CatalogFacet> categories;
+  final List<CatalogFacet> tags;
+  final double? minPrice;
+  final double? maxPrice;
+  final int maxDiscountPercent;
+
+  const CatalogFacets({
+    required this.categories,
+    required this.tags,
+    required this.minPrice,
+    required this.maxPrice,
+    required this.maxDiscountPercent,
+  });
+
+  factory CatalogFacets.fromJson(Map<String, dynamic> j) => CatalogFacets(
+        categories: (j['categories'] as List)
+            .map((e) => CatalogFacet.fromJson(e as Map<String, dynamic>))
+            .toList(),
+        tags: (j['tags'] as List)
+            .map((e) => CatalogFacet.fromJson(e as Map<String, dynamic>))
+            .toList(),
+        minPrice: (j['min_price'] as num?)?.toDouble(),
+        maxPrice: (j['max_price'] as num?)?.toDouble(),
+        maxDiscountPercent: (j['max_discount_percent'] as num?)?.toInt() ?? 0,
+      );
+}
+
 class CatalogApiException implements Exception {
   final int? statusCode;
   final String message;
@@ -260,7 +297,7 @@ class CatalogService {
       if (hasLocation) 'lat': '$lat',
       if (hasLocation) 'lng': '$lng',
     };
-    
+
     if (!hasLocation) {
       if (params['sort'] == CatalogSort.nearest.apiValue) {
         params['sort'] = CatalogSort.nearestExpiry.apiValue;
@@ -286,6 +323,21 @@ class CatalogService {
     } catch (_) {}
     throw CatalogApiException('Catalog request failed',
         statusCode: res.statusCode, details: details);
+  }
+
+  Future<CatalogFacets> facets() async {
+    final uri = Uri.parse('$baseUrl/api/catalog/facets');
+    final http.Response res;
+    try {
+      res = await _client.get(uri).timeout(const Duration(seconds: 15));
+    } catch (e) {
+      throw CatalogApiException('Could not reach the server');
+    }
+    if (res.statusCode != 200) {
+      throw CatalogApiException('Could not load filter options',
+          statusCode: res.statusCode);
+    }
+    return CatalogFacets.fromJson(jsonDecode(res.body) as Map<String, dynamic>);
   }
 
   void dispose() => _client.close();

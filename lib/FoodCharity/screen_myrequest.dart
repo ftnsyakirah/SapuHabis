@@ -117,14 +117,13 @@ class _MyRequestsScreenState extends State<MyRequestsScreen> {
             ),
           ),
           Row(children: [
-            Container(
+            Image.asset(
+              'assets/images/logo.jpg',
               width: 28,
               height: 28,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(color: _green, borderRadius: BorderRadius.circular(8)),
-              child: const Text('U',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800)),
+              fit: BoxFit.contain,
             ),
+
             const SizedBox(width: 6),
             Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
               const Text('SapuHabis!',

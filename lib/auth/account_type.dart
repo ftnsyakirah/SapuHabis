@@ -20,9 +20,12 @@ class FieldSpec {
 }
 
 class DocSpec {
+  ///sent to backend as the upload field name.match REQUIRED_DOCS in
+  ///backend /app/validation.py
+  final String key;
   final String title;
   final String helper;
-  const DocSpec(this.title, this.helper);
+  const DocSpec(this.key, this.title, this.helper);
 }
 
 class AccountConfig {
@@ -133,4 +136,17 @@ const _charity = AccountConfig(
 extension AccountTypeX on AccountType {
   AccountConfig get config =>
       this == AccountType.foodBusiness ? _foodBusiness : _charity;
+
+  /// Name shown to the user.
+  String get label => this == AccountType.foodBusiness
+      ? 'FoodBusiness'
+      : 'Food Charity Organization';
+
+  IconData get icon => this == AccountType.foodBusiness
+      ? Icons.storefront_outlined
+      : Icons.volunteer_activism_outlined;
+
+  /// Value sent to the backend.
+  String get apiValue =>
+      this == AccountType.foodBusiness ? 'food_business' : 'charity';
 }

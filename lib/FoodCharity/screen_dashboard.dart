@@ -78,16 +78,12 @@ class FoodCharityDashboard extends StatelessWidget {
                     size: 18, color: _fcGreenDark),
               ),
               Row(children: [
-                Container(
-                  width: 28,
-                  height: 28,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: _fcGreen, borderRadius: BorderRadius.circular(8)),
-                  child: const Text('U',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w800)),
-                ),
+                Image.asset(
+                  'assets/images/logo.jpg',
+                    width: 28,
+                    height: 28,
+                    fit: BoxFit.contain,
+            ),
                 const SizedBox(width: 6),
                 Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
                   const Text('SapuHabis!',

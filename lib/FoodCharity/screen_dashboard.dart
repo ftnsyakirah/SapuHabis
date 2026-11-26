@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
+import '../theme/app_colors.dart';
 import 'screen_myrequest.dart';
 // Put this file in e.g. lib/screens/foodcharity_dashboard.dart
 // Use it from your existing app:
 //   Navigator.push(context, MaterialPageRoute(builder: (_) => const FoodCharityDashboard()));
 // or set it as a route / home page.
 
-const _fcGreen = Color(0xFF1F6B45);
-const _fcGreenDark = Color(0xFF17452E);
+const _fcGreen =AppColors.green;
+const _fcGreenDark = AppColors.dark;
 const _fcCream = Color(0xFFFDF6E9);
 const _fcCard = Color(0xFFFFFDF8);
 const _fcLine = Color(0xFFE4DCCB);
 const _fcMint = Color(0xFFE1ECD9);
-const _fcMuted = Color(0xFF6B6B60);
+const _fcMuted = AppColors.textGrey;
 
 class FcItem {
-  final String name, meta, risk, days;
-  const FcItem(this.name, this.meta, this.risk, this.days);
+  final String name;
+  final String meta;
+  final String risk;
+  final String days;
+  final String image;
+
+  const FcItem(
+    this.name,
+    this.meta,
+    this.risk,
+    this.days,
+    this.image,
+  );
 }
 
 class FoodCharityDashboard extends StatelessWidget {
@@ -32,12 +44,35 @@ class FoodCharityDashboard extends StatelessWidget {
     this.totalPayment = 'RM 980',
     this.showBottomNav = true,
     this.items = const [
-      FcItem('Sliced Bread', '50 packs · 12 Oct 2025', 'High Risk', '2 days'),
-      FcItem('Fresh Milk', '30 bottles · 11 Oct 2025', 'High Risk', '1 day'),
-      FcItem('Yogurt', '75 packs · 14 Oct 2025', 'Medium', '3 days'),
-      FcItem('Chicken Sandwich', '40 packs · 13 Oct 2025', 'High Risk', '2 days'),
-    ],
-  });
+  FcItem(
+    'Sliced Bread',
+    '50 packs · 12 Oct 2025',
+    'High Risk',
+    '2 days',
+    'assets/images/Bread.jpg',
+  ),
+  FcItem(
+    'Fresh Milk',
+    '30 bottles · 11 Oct 2025',
+    'High Risk',
+    '1 day',
+    'assets/images/farm_fresh_2l.jpg',
+  ),
+  FcItem(
+    'Potato',
+    '75 packs · 14 Oct 2025',
+    'Medium',
+    '3 days',
+    'assets/images/POTATO.jpg',
+  ),
+  FcItem(
+    'Egg',
+    '40 packs · 13 Oct 2025',
+    'High Risk',
+    '2 days',
+    'assets/images/eggs_gredC.jpg',
+  ),
+  ], });
 
   BoxDecoration _box(double r) => BoxDecoration(
       color: _fcCard,
@@ -78,12 +113,21 @@ class FoodCharityDashboard extends StatelessWidget {
                     size: 18, color: _fcGreenDark),
               ),
               Row(children: [
-                Image.asset(
-                  'assets/images/logo.jpg',
-                    width: 28,
-                    height: 28,
-                    fit: BoxFit.contain,
-            ),
+                Container(
+  width: 34,
+  height: 34,
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(10),
+    border: Border.all(color: _fcLine),
+  ),
+  child: ClipRRect(
+    borderRadius: BorderRadius.circular(10),
+    child: Image.asset(
+      'assets/images/logo.jpg',
+      fit: BoxFit.cover,
+    ),
+  ),
+),
                 const SizedBox(width: 6),
                 Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
                   const Text('SapuHabis!',
@@ -215,18 +259,24 @@ class FoodCharityDashboard extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         decoration: _box(14),
         child: Row(children: [
-          Container(
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                  color: _fcMint, borderRadius: BorderRadius.circular(8))),
+          ClipRRect(
+  borderRadius: BorderRadius.circular(8),
+  child: Image.asset(
+    label == 'Total Items'
+        ? 'assets/images/total_item.png'
+        : 'assets/images/total_payment.png',
+    width: 35,
+    height: 35,
+    fit: BoxFit.cover,
+  ),
+),
           const SizedBox(width: 10),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(value,
                 style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
-                    color: _fcGreenDark)),
+                    color: AppColors.dark)),
             Text(label,
                 style: const TextStyle(fontSize: 10, color: _fcMuted)),
           ]),
@@ -238,12 +288,16 @@ class FoodCharityDashboard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
       child: Row(children: [
-        Container(
-            width: 30,
-            height: 30,
-            decoration: BoxDecoration(
-                color: const Color(0xFFE9DCC3),
-                borderRadius: BorderRadius.circular(6))),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Image.asset(
+          item.image,
+          width: 40,
+          height: 40,
+          fit: BoxFit.cover,
+          ),
+        ),
+
         const SizedBox(width: 10),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
